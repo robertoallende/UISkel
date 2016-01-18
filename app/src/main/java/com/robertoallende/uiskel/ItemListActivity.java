@@ -16,9 +16,6 @@ import java.util.List;
 public class ItemListActivity extends AppCompatActivity implements
         ItemListFragment.OnListFragmentInteractionListener {
 
-    private String FRAGMENT_TAG = "ItemListFragment";
-    private ItemListFragment itemListDataFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,17 +27,10 @@ public class ItemListActivity extends AppCompatActivity implements
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        itemListDataFragment = (ItemListFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
-
-        if (itemListDataFragment == null) {
+        if (savedInstanceState == null) {
             ItemListFragment itemListFragment = new ItemListFragment();
             fragmentTransaction.add(R.id.activity_item_list_content, itemListFragment);
             fragmentTransaction.commit();
-        } else {
-            List<DummyContent> dummyContent = (List<DummyContent>) itemListDataFragment.getData();
-            ItemListFragment itemListFragment =
-                    (ItemListFragment) fragmentManager.findFragmentById(R.id.activity_item_list_content);
-            itemListFragment.setData(dummyContent);
         }
     }
 

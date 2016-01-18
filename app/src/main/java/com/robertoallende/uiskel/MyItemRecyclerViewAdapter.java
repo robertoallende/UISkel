@@ -51,6 +51,10 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         });
     }
 
+    public List<DummyItem> getItems() {
+        return mValues;
+    }
+
     @Override
     public int getItemCount() {
         return mValues.size();

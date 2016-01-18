@@ -2,6 +2,8 @@ package com.robertoallende.uiskel;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +22,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ItemListFragment extends RetainedFragment {
+public class ItemListFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -28,6 +30,10 @@ public class ItemListFragment extends RetainedFragment {
     private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
+
+    // To be used with configuration changes.
+    private String FRAGMENT_TAG = "ItemListFragmentData";
+    private RetainedFragment dataFragment;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -69,8 +75,18 @@ public class ItemListFragment extends RetainedFragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            updateContent(DummyContent.ITEMS);
         }
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        dataFragment = (RetainedFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
+        if (dataFragment == null) {
+            dataFragment = new RetainedFragment();
+            updateContent(DummyContent.ITEMS);
+        } else {
+            updateContent((List<DummyItem>) dataFragment.getData());
+        }
+
+
         return view;
     }
 
@@ -109,5 +125,13 @@ public class ItemListFragment extends RetainedFragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MyItemRecyclerViewAdapter myAdapter = (MyItemRecyclerViewAdapter) recyclerView.getAdapter();
+        dataFragment.setData(myAdapter.getItems());
     }
 }
