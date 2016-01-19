@@ -27,7 +27,7 @@ public class ItemListFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 2;
+    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
 
@@ -67,9 +67,10 @@ public class ItemListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        recyclerView = (RecyclerView) view.findViewById(R.id.list);
+
+        if (recyclerView != null) {
             Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -85,8 +86,6 @@ public class ItemListFragment extends Fragment {
         } else {
             updateContent((List<DummyItem>) dataFragment.getData());
         }
-
-
         return view;
     }
 
