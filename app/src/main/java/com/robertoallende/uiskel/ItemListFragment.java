@@ -10,7 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.LinearLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import com.robertoallende.uiskel.dummy.DummyContent;
 import com.robertoallende.uiskel.dummy.DummyContent.DummyItem;
 
@@ -23,6 +24,7 @@ import java.util.List;
  * interface.
  */
 public class ItemListFragment extends Fragment {
+
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -66,13 +68,21 @@ public class ItemListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
-        // Set the adapter
+
+
+        /* Using LinearLayoutManager bacause 74772 bug is not solved yet:
+            https://code.google.com/p/android/issues/detail?id=74772
+
+           Discussion:
+            http://stackoverflow.com/questions/32165321/horizontal-recycler-view-not-showing-anything
+            http://stackoverflow.com/questions/27475178/how-do-i-make-wrap-content-work-on-a-recyclerview
+        */
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
 
         if (recyclerView != null) {
             Context context = view.getContext();
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setLayoutManager(new WrappingRecyclerViewLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
@@ -89,8 +99,10 @@ public class ItemListFragment extends Fragment {
         return view;
     }
 
-    public void updateContent(List<DummyItem> items){
+    public void updateContent(List<DummyItem> items) {
+
         recyclerView.setAdapter(new MyItemRecyclerViewAdapter(items, mListener));
+
     }
 
 

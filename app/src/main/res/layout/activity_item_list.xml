@@ -21,32 +21,38 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginStart="16dp">
 
-        <!-- Background Image Sample
-            ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_collapseMode="parallax"
-            android:scaleType="centerCrop"
-            android:src="@drawable/" -->
+            <!-- Background Image Sample
+                ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+                android:scaleType="centerCrop"
+                android:src="@drawable/" -->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:contentInsetStart="16dp"
-            app:layout_collapseMode="pin" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:contentInsetStart="16dp"
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/activity_item_list_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </android.support.v4.widget.NestedScrollView>
+        <!--
+         Following:
+         http://stackoverflow.com/questions/31000081/how-to-use-recyclerview-inside-nestedscrollview
+        -->
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 
 

@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:listitem="@layout/fragment_item"
+    android:id="@+id/list"
     android:layout_width="match_parent"
-    android:layout_height="700dp"
-    android:minHeight="700dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ItemListFragment">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="700dp"
-        android:minHeight="700dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/fragment_item"/>
-
-    <!-- TODO: solve this problem
-    http://stackoverflow.com/questions/32165321/horizontal-recycler-view-not-showing-anything
-    http://stackoverflow.com/questions/27475178/how-do-i-make-wrap-content-work-on-a-recyclerview
-    -->
-
-</android.support.v4.widget.SwipeRefreshLayout>
+    />
