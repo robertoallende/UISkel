@@ -66,14 +66,6 @@ public class ItemListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
-
-        /* Using LinearLayoutManager bacause 74772 bug is not solved yet:
-            https://code.google.com/p/android/issues/detail?id=74772
-
-           Discussion:
-            http://stackoverflow.com/questions/32165321/horizontal-recycler-view-not-showing-anything
-            http://stackoverflow.com/questions/27475178/how-do-i-make-wrap-content-work-on-a-recyclerview
-        */
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
 
         if (recyclerView != null) {

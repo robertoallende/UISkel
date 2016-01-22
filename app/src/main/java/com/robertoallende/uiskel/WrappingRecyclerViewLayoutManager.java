@@ -1,8 +1,15 @@
 package com.robertoallende.uiskel;
 
 /*
+    This is needed because 74772 bug is not solved yet:
+    https://code.google.com/p/android/issues/detail?id=74772
+
     Following lilienberg' answer at
     http://stackoverflow.com/questions/26649406/nested-recycler-view-height-doesnt-wrap-its-content/27616854#27616854
+
+    Discussion:
+     http://stackoverflow.com/questions/32165321/horizontal-recycler-view-not-showing-anything
+     http://stackoverflow.com/questions/27475178/how-do-i-make-wrap-content-work-on-a-recyclerview
 
  */
 
