@@ -26,7 +26,6 @@ public class ItemListFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
 
@@ -54,10 +53,6 @@ public class ItemListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
@@ -70,10 +65,11 @@ public class ItemListFragment extends Fragment {
 
         if (recyclerView != null) {
             Context context = view.getContext();
-            if (mColumnCount <= 1) {
+            int columnCount = getResources().getInteger(R.integer.grid_columns);
+            if (columnCount == 1) {
                 recyclerView.setLayoutManager(new WrappingRecyclerViewLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new GridLayoutManager(context, columnCount));
             }
         }
 

@@ -42,7 +42,7 @@ public class ItemListActivity extends AppCompatActivity implements
                         // TODO: Here goes the code to update list on swipe event
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         ItemListFragment itemListFragment =
-                                (ItemListFragment) fragmentManager.findFragmentById(R.id.activity_item_list_content);
+                                   (ItemListFragment) fragmentManager.findFragmentById(R.id.activity_item_list_content);
                         List<DummyContent.DummyItem> items = DummyContent.ITEMS;
                         Collections.reverse(items);
                         itemListFragment.updateContent(items);
@@ -51,7 +51,6 @@ public class ItemListActivity extends AppCompatActivity implements
                     }
                 }
         );
-
     }
 
     @Override
