@@ -49,12 +49,9 @@
         <!--
          Following:
          http://stackoverflow.com/questions/31000081/how-to-use-recyclerview-inside-nestedscrollview
+         http://developer.android.com/training/swipe/respond-refresh-request.html
         -->
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
-
-
-
 
 </android.support.design.widget.CoordinatorLayout>
