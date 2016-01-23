@@ -85,7 +85,7 @@ public class ItemListFragment extends Fragment {
     }
 
     public void updateContent(List<DummyItem> items) {
-        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(items, mListener));
+        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(this.getContext(), items, mListener));
     }
 
 
